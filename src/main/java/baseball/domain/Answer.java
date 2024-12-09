@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.constants.GameConstant;
 import baseball.exception.ErrorMessage;
 import baseball.exception.GameException;
 import java.util.Collections;
@@ -8,7 +9,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Answer {
-    private static final Integer NUMBERS_SIZE = 3;
     private final List<Number> numbers;
 
     public Answer(List<Integer> numbers) {
@@ -34,7 +34,7 @@ public class Answer {
         }
 
         private static void validateNumbersSize(List<Integer> numbers) {
-            if (numbers.size() != NUMBERS_SIZE) {
+            if (numbers.size() != GameConstant.NUMBERS_SIZE.getNumber()) {
                 throw GameException.from(ErrorMessage.INVALID_NUMBER_SIZE);
             }
         }
