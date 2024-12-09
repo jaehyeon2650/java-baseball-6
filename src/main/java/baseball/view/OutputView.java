@@ -10,20 +10,36 @@ public class OutputView {
 
     public static void printResult(Map<Result, Integer> results) {
         StringBuilder builder = new StringBuilder();
-        if (results.getOrDefault(Result.NOT, 0) == 1) {
-            builder.append(Result.NOT.getResult());
-        }
         int ballCount = results.getOrDefault(Result.BALL, 0);
         int strikeCount = results.getOrDefault(Result.STRIKE, 0);
-        if (ballCount != 0) {
-            builder.append(ballCount).append(Result.BALL.getResult()).append(" ");
-        }
-        if (strikeCount != 0) {
-            builder.append(strikeCount).append(Result.STRIKE.getResult());
-        }
+        saveResult(builder, ballCount, strikeCount);
         System.out.println(builder);
         if (strikeCount == 3) {
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        }
+    }
+
+    private static void saveResult(StringBuilder builder, int ballCount, int strikeCount) {
+        checkNothing(builder, ballCount, strikeCount);
+        checkBall(builder, ballCount);
+        checkStrike(builder, strikeCount);
+    }
+
+    private static void checkNothing(StringBuilder builder, int ballCount, int strikeCount) {
+        if (ballCount == 0 && strikeCount == 0) {
+            builder.append(Result.NOT.getResult());
+        }
+    }
+
+    private static void checkStrike(StringBuilder builder, int strikeCount) {
+        if (strikeCount != 0) {
+            builder.append(strikeCount).append(Result.STRIKE.getResult());
+        }
+    }
+
+    private static void checkBall(StringBuilder builder, int ballCount) {
+        if (ballCount != 0) {
+            builder.append(ballCount).append(Result.BALL.getResult()).append(" ");
         }
     }
 }
