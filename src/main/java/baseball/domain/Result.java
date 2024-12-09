@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.constants.GameConstant;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +19,8 @@ public enum Result {
 
     public static Map<Result, Integer> getGameResult(List<Number> answerNumbers, List<Number> inputNumbers) {
         Map<Result, Integer> results = new EnumMap<>(Result.class);
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < GameConstant.NUMBERS_SIZE.getNumber(); i++) {
+            for (int j = 0; j < GameConstant.NUMBERS_SIZE.getNumber(); j++) {
                 Result result = findResult(i, j, answerNumbers, inputNumbers);
                 if (result == Result.STRIKE) {
                     results.put(Result.STRIKE, results.getOrDefault(Result.STRIKE, 0) + 1);
