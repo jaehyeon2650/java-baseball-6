@@ -20,7 +20,7 @@ public class Answer {
         return Collections.unmodifiableList(numbers);
     }
 
-    static class Validator {
+    private static class Validator {
         private static void validateAnswerNumber(List<Integer> numbers) {
             validateNumbersSize(numbers);
             validateDuplicate(numbers);
@@ -29,7 +29,7 @@ public class Answer {
         private static void validateDuplicate(List<Integer> numbers) {
             Set<Integer> uniqueNumbers = new HashSet<>(numbers);
             if (uniqueNumbers.size() != numbers.size()) {
-                throw new IllegalArgumentException();
+                throw GameException.from(ErrorMessage.INVALID_NUMBER_DUPLICATE);
             }
         }
 
