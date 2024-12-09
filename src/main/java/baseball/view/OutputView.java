@@ -1,5 +1,6 @@
 package baseball.view;
 
+import baseball.constants.GameConstant;
 import baseball.domain.Result;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ public class OutputView {
         int strikeCount = results.getOrDefault(Result.STRIKE, 0);
         saveResult(builder, ballCount, strikeCount);
         System.out.println(builder);
-        if (strikeCount == 3) {
+        if (strikeCount == GameConstant.NUMBERS_SIZE.getNumber()) {
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
         }
     }
