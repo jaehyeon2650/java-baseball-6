@@ -9,10 +9,18 @@ public class InputView {
         System.out.println("숫자를 입력해주세요 : ");
         String numbers = Console.readLine().trim();
         Validator.validateGameInput(numbers);
-        return Parser.splitNumber(numbers);
+        return Parser.splitNumbers(numbers);
     }
 
-    private static class Validator {
+    public static boolean restart() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        String number = Console.readLine().trim();
+        Validator.validateNumberType(number);
+        Validator.validateRestartNumberRange(number);
+        return Parser.getRestartResult(number);
+    }
+
+    static class Validator {
         private static void validateGameInput(String input) {
             validateLength(input);
             validateNumber(input);
@@ -44,6 +52,13 @@ public class InputView {
                     }
                 }
             } catch (NumberFormatException e) {
+                throw new IllegalArgumentException();
+            }
+        }
+
+        private static void validateRestartNumberRange(String input) {
+            int number = Integer.parseInt(input);
+            if (number != 1 && number != 2) {
                 throw new IllegalArgumentException();
             }
         }

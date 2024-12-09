@@ -14,8 +14,8 @@
 ### input
 
 - [X] 게임 플레이어는 서로 다른 3개의 숫자를 입력한다.
-- [ ] 잘못된 값을 입력한 경우 IllegalArgumentException 발생
-- [ ] 게임이 종료되고 재시작 하려면 1, 종료하려면 2를 입력받는다.
+- [X] 잘못된 값을 입력한 경우 IllegalArgumentException 발생
+- [X] 게임이 종료되고 재시작 하려면 1, 종료하려면 2를 입력받는다.
 
 ### output
 
