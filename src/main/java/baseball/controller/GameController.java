@@ -1,5 +1,6 @@
 package baseball.controller;
 
+import baseball.constants.GameConstant;
 import baseball.domain.Answer;
 import baseball.domain.Computer;
 import baseball.domain.Result;
@@ -26,7 +27,7 @@ public class GameController {
             Answer answer = new Answer(numbers);
             Map<Result, Integer> gameResults = computer.getGameResults(answer.getNumbers());
             OutputView.printResult(gameResults);
-            if (gameResults.getOrDefault(Result.STRIKE, 0) == 3) {
+            if (gameResults.getOrDefault(Result.STRIKE, 0).equals(GameConstant.NUMBERS_SIZE.getNumber())) {
                 return;
             }
         }
