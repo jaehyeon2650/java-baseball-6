@@ -1,12 +1,10 @@
 package baseball.domain;
 
+import baseball.constants.GameConstant;
 import baseball.exception.ErrorMessage;
 import baseball.exception.GameException;
 
 public class Number {
-    private static final Integer MIN_NUMBER = 1;
-    private static final Integer MAX_NUMBER = 9;
-
     private final int number;
 
     public Number(int number) {
@@ -24,7 +22,7 @@ public class Number {
 
     private static class Validator {
         private static void validateNumberRange(int number) {
-            if (number < MIN_NUMBER || number > MAX_NUMBER) {
+            if (number < GameConstant.MIN_NUMBER.getNumber() || number > GameConstant.MAX_NUMBER.getNumber()) {
                 throw GameException.from(ErrorMessage.INVALID_NUMBER_RANGE);
             }
         }
