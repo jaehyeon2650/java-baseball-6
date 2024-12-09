@@ -1,12 +1,12 @@
 package baseball.domain;
 
+import baseball.constants.GameConstant;
 import baseball.exception.ErrorMessage;
 import baseball.exception.GameException;
 import java.util.List;
 import java.util.Map;
 
 public class Computer {
-    private static final Integer NUMBERS_SIZE = 3;
     private final List<Number> numbers;
 
     public Computer(List<Integer> numbers) {
@@ -20,7 +20,7 @@ public class Computer {
 
     static class Validator {
         private static void validateNumbersSize(List<Integer> numbers) {
-            if (numbers.size() != NUMBERS_SIZE) {
+            if (numbers.size() != GameConstant.NUMBERS_SIZE.getNumber()) {
                 throw GameException.from(ErrorMessage.INVALID_NUMBER_SIZE);
             }
         }
