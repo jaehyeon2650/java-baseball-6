@@ -1,5 +1,6 @@
 package baseball.view;
 
+import baseball.constants.GameConstant;
 import baseball.exception.ErrorMessage;
 import baseball.exception.GameException;
 import baseball.utils.Parser;
@@ -33,7 +34,7 @@ public class InputView {
         }
 
         private static void validateLength(String input) {
-            if (input.length() != 3) {
+            if (input.length() != GameConstant.NUMBERS_SIZE.getNumber()) {
                 throw GameException.from(ErrorMessage.INVALID_NUMBER_SIZE);
             }
         }
@@ -45,8 +46,9 @@ public class InputView {
         }
 
         private static void validateRestartNumberRange(String input) {
-            int number = Integer.parseInt(input);
-            if (number != 1 && number != 2) {
+            Integer number = Integer.parseInt(input);
+            if (!number.equals(GameConstant.RESTART_TRUE.getNumber()) && !number.equals(
+                    GameConstant.RESTART_FALSE.getNumber())) {
                 throw GameException.from(ErrorMessage.INVALID_RESTART_VALUE);
             }
         }
