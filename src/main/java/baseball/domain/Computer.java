@@ -1,42 +1,27 @@
 package baseball.domain;
 
-import java.util.EnumMap;
+import baseball.exception.ErrorMessage;
+import baseball.exception.GameException;
 import java.util.List;
 import java.util.Map;
 
 public class Computer {
+    private static final Integer NUMBERS_SIZE = 3;
     private final List<Number> numbers;
 
     public Computer(List<Integer> numbers) {
         Validator.validateNumbersSize(numbers);
         this.numbers = numbers.stream().map(Number::new).toList();
-
     }
 
     public Map<Result, Integer> getGameResults(List<Number> inputNumbers) {
-        Map<Result, Integer> result = new EnumMap<>(Result.class);
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (i == j && numbers.get(j).isSameNumber(inputNumbers.get(i))) {
-                    result.put(Result.STRIKE, result.getOrDefault(Result.STRIKE, 0) + 1);
-                    break;
-                }
-                if (i != j && numbers.get(j).isSameNumber(inputNumbers.get(i))) {
-                    result.put(Result.BALL, result.getOrDefault(Result.BALL, 0) + 1);
-                    break;
-                }
-            }
-        }
-        if (result.getOrDefault(Result.STRIKE, 0) == 0 && result.getOrDefault(Result.BALL, 0) == 0) {
-            result.put(Result.NOT, 1);
-        }
-        return result;
+        return Result.getGameResult(this.numbers, inputNumbers);
     }
 
     static class Validator {
         private static void validateNumbersSize(List<Integer> numbers) {
             if (numbers.size() != NUMBERS_SIZE) {
-                throw new IllegalArgumentException();
+                throw GameException.from(ErrorMessage.INVALID_NUMBER_SIZE);
             }
         }
     }
