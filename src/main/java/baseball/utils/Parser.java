@@ -1,5 +1,6 @@
 package baseball.utils;
 
+import baseball.constants.GameConstant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class Parser {
     }
 
     public static boolean getRestartResult(String input) {
-        int result = Integer.parseInt(input);
-        return result == 1;
+        Integer result = Integer.parseInt(input);
+        return result.equals(GameConstant.RESTART_TRUE.getNumber());
     }
 }
