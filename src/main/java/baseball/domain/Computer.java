@@ -8,6 +8,7 @@ public class Computer {
     private final List<Number> numbers;
 
     public Computer(List<Integer> numbers) {
+        Validator.validateNumbersSize(numbers);
         this.numbers = numbers.stream().map(Number::new).toList();
 
     }
@@ -32,4 +33,11 @@ public class Computer {
         return result;
     }
 
+    static class Validator {
+        private static void validateNumbersSize(List<Integer> numbers) {
+            if (numbers.size() != NUMBERS_SIZE) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
 }
